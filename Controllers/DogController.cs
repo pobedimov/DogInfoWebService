@@ -51,35 +51,39 @@ namespace DogInfoWebService.Controllers
                     new ValidationProblemDetails(ModelState));
             }
 
-            // Получение списка пород собак.
-            _logger.LogInformation("Загрузка списка пород собак.");
-            List<string> breedsList = await _dogBreedsList.GetAllBreeds();
-
-            Dictionary<string, List<string>> dictionaryBreedImages = new();
-
-            if (breedsList.Count > 0)
+            try
             {
+                // Получение списка пород собак.
+                _logger.LogInformation("Загрузка списка пород собак.");
+                List<string> breedsList = await _dogBreedsList.GetAllBreeds();
+
+                Dictionary<string, List<string>> dictionaryBreedImages;
+
+                if (breedsList.Count <= 0)
+                {
+                    _logger.LogError("Пустой список пород собак или ошибка загрузки.");
+                    return StatusCode(500, new ResponceModel() { Status = "error" });
+                }
+
                 // Сохранение изображений.
                 _logger.LogInformation("Загрузка изображений.");
                 dictionaryBreedImages = await _dogDownloadImage.SaveImageAsync(breedsList, model.Count);
 
-                if (dictionaryBreedImages.Count > 0)
+                if (dictionaryBreedImages.Count <= 0)
                 {
-                    // Сохранение информации об изображениях в БД Redis.
-                    _logger.LogInformation("Сохранение информации об изображениях в БД Redis");
-                    await _dogImageInfoDb.SaveDogImageInfoDb(dictionaryBreedImages);
-                   
-                    return Ok(new ResponceModel() { Status = "ok" });
-                }
-                else 
-                {
-                    _logger.LogError("Пустой список загруженныз изображений. Не были загружены изображения.");
+                    _logger.LogError("Пустой список загруженных изображений. Не были загружены изображения.");
                     return StatusCode(500, new ResponceModel() { Status = "error" });
                 }
+
+                // Сохранение информации об изображениях в БД Redis.
+                _logger.LogInformation("Сохранение информации об изображениях в БД Redis");
+                await _dogImageInfoDb.SaveDogImageInfoDb(dictionaryBreedImages);
+
+                return Ok(new ResponceModel() { Status = "ok" });
             }
-            else 
+            catch (Exception ex)
             {
-                _logger.LogError("Пустой список пород собак или ошибка загрузки.");
+                _logger.LogError("Ошибка при выполнении работы сервиса - {error}", ex);
                 return StatusCode(500, new ResponceModel() { Status = "error" });
             }
         }

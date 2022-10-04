@@ -31,11 +31,6 @@ public class RedisStore
             .AddJsonFile("appsettings.json", true, true)
             .Build();
 
-        if (string.IsNullOrEmpty(config["RedisConnectionString"]))
-        {
-            throw new ArgumentException("Не задана строка подключения в файле настроек.");
-        }
-
         var configurationOptions = new ConfigurationOptions
         {
             EndPoints = { config["RedisConnectionString"] }

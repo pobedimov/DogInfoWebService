@@ -32,8 +32,8 @@ public class DogImageInfoDb : IDogImageInfoDb
             _logger.LogError("В качестве параметра словаря передана пустая ссылка.");
             throw new ArgumentNullException(nameof(dictionaryBreedImages), "В качестве параметра словаря передана пустая ссылка.");
         }
-
-        if (dictionaryBreedImages.Count > 0)
+       
+        try
         {
             IDatabase redisStore = RedisStore.Redis;
 
@@ -45,7 +45,7 @@ public class DogImageInfoDb : IDogImageInfoDb
                 }
 
                 IEnumerable<string> linkList = dictionaryBreedImages[itemKey];
-                
+
                 foreach (var itemLink in linkList)
                 {
                     await redisStore.ListRightPushAsync(itemKey, itemLink);
@@ -56,9 +56,10 @@ public class DogImageInfoDb : IDogImageInfoDb
                 _logger.LogInformation($"{itemKey} - {len}");
             }
         }
-        else 
+        catch (Exception ex)
         {
-            _logger.LogError("Отсутствуют данные по изображениям для размещения в БД.");
-        }
+            _logger.LogError("Ошибка при работе с БД.{error}", ex);
+            throw;
+        } 
     }
 }
