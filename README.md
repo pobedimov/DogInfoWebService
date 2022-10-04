@@ -1,2 +1,2 @@
 ## DogInfoWebService (WebApi)
-Cервис для загрузки картинок с сайта https://dog.ceo/dog-api/
+РЎРµСЂРІРёСЃ РґР»СЏ Р·Р°РіСЂСѓР·РєРё РёР·РѕР±СЂР°Р¶РµРЅРёР№ СЃ СЃР°Р№С‚Р°В https://dog.ceo/dog-api/
