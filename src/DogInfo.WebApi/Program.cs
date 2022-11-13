@@ -31,7 +31,7 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
-        Title = "DogInfo API",
+        Title = "DogInfo WebAPI",
         Description = "ASP.NET Core Web API для получения породы собак и загрузки изображений"
     });
 

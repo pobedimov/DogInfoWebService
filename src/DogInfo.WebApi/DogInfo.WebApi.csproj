@@ -5,7 +5,7 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
-		<DocumentationFile>DogInfoWebService.xml</DocumentationFile>
+		<DocumentationFile>DogInfo.WebApi.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -21,7 +21,7 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<PackageReference Include="StackExchange.Redis" Version="2.6.66" />
+		<PackageReference Include="StackExchange.Redis" Version="2.6.70" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
 	</ItemGroup>
 
