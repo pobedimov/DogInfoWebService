@@ -16,7 +16,7 @@ public class RequestModel
     public string Command { get; set; } = string.Empty;
 
     /// <summary>
-    /// Представляет количество загружаемыз изображений.
+    /// Представляет количество загружаемых изображений.
     /// </summary>
     [Required]
     [Display(Name = "count")]

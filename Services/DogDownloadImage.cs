@@ -1,4 +1,6 @@
 ﻿using DogInfoWebService.Model;
+using DogInfoWebService.Settings;
+using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
 using System.Text.Json;
 
@@ -9,16 +11,21 @@ namespace DogInfoWebService.Services;
 /// </summary>
 public class DogDownloadImage : IDogDownloadImage
 {
+    private readonly string PathToImageFiles;
     private readonly HttpClient _httpClient;
     private readonly ILogger<DogBreedsList> _logger;
 
     /// <summary>
     /// Конструктор класса.
     /// </summary>
+    /// <param name="options">Данные настроек для картинок загруженные из конфигурации.</param>
     /// <param name="httpClient">Http клиент.</param>
     /// <param name="logger">Средство логгирования.</param>
-    public DogDownloadImage(HttpClient httpClient, ILogger<DogBreedsList> logger)
+    public DogDownloadImage(IOptions<AppImageSettings> options, HttpClient httpClient, ILogger<DogBreedsList> logger)
     {
+        AppImageSettings appImageSettings = options.Value;
+        PathToImageFiles = appImageSettings.PathToImageFiles;
+
         _httpClient = httpClient;
         _httpClient.BaseAddress = new Uri("https://dog.ceo");
         _httpClient.DefaultRequestHeaders.Add(HeaderNames.UserAgent, "DogBreeds");
@@ -43,8 +50,8 @@ public class DogDownloadImage : IDogDownloadImage
         }
         if (imageCount <= 0)
         {
-            _logger.LogError("В качестве параметра списка передана пустая ссылка.");
-            throw new ArgumentOutOfRangeException(nameof(imageCount), "В качестве параметра списка передана пустая ссылка.");
+            _logger.LogError("Переданно некорректное количество изображений.");
+            throw new ArgumentOutOfRangeException(nameof(imageCount), "Переданно некорректное количество изображений.");
         }
 
         Dictionary<string, List<string>> dictionaryBreedImages = new();
@@ -68,7 +75,7 @@ public class DogDownloadImage : IDogDownloadImage
                     {
                         foreach (var itemImageUri in jsonDataDeserializeObject.Message)
                         {
-                            string fullPath = await DownloadImageAsync(Directory.GetCurrentDirectory(), new Uri(itemImageUri));
+                            string fullPath = await DownloadImageAsync(PathToImageFiles, new Uri(itemImageUri));
                             dictionaryBreedImages[itemBreed].Add(new Uri(itemImageUri).GetLeftPart(UriPartial.Path));
                         }
                     }

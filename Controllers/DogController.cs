@@ -29,10 +29,12 @@ namespace DogInfoWebService.Controllers
         }
 
         /// <summary>
-        /// Get запрос списка пород.
+        /// Получение списка пород собак.
         /// </summary>
         /// <returns>Список пород собак.</returns>
+        ///<response code="200">Список пород собак.</response>
         [HttpGet("getdogbreed")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> Index()
         {
             return Ok(await _dogBreedsList.GetAllBreeds());
@@ -42,13 +44,22 @@ namespace DogInfoWebService.Controllers
         /// Обработка POST запроса с командой.
         /// </summary>
         /// <param name="model">Модель.</param>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     POST /command
+        ///     {
+        ///         "command": "run",
+        ///         "count": 2
+        ///     }
+        ///
+        /// </remarks>
         [HttpPost("command")]
         public async Task<ActionResult> DownloadDogsInfoAsync([FromBody] RequestModel model)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(
-                    new ValidationProblemDetails(ModelState));
+                return BadRequest(new ValidationProblemDetails(ModelState));
             }
 
             try

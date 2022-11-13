@@ -1,6 +1,4 @@
-﻿using DogInfoWebService.Model;
-
-namespace DogInfoWebService.Services;
+﻿namespace DogInfoWebService.Services;
 
 /// <summary>
 /// Интерфейс загрузки списка пород собак.
