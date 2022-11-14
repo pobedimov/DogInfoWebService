@@ -1,14 +1,14 @@
-using DogInfoWebService.Services;
+п»їusing DogInfoWebService.Services;
 using DogInfoWebService.Settings;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Получаем настройки для секции сохранения картинок.
+// РџРѕР»СѓС‡Р°РµРј РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ СЃРµРєС†РёРё СЃРѕС…СЂР°РЅРµРЅРёСЏ РєР°СЂС‚РёРЅРѕРє.
 builder.Services.Configure<AppImageSettings>(builder.Configuration.GetSection("AppImageSettings"));
 
-// Добавление сервисов в контейнер DI.
+// Р”РѕР±Р°РІР»РµРЅРёРµ СЃРµСЂРІРёСЃРѕРІ РІ РєРѕРЅС‚РµР№РЅРµСЂ DI.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
@@ -16,7 +16,7 @@ builder.Services.AddHttpClient<IDogBreedsList, DogBreedsList>();
 builder.Services.AddHttpClient<IDogDownloadImage, DogDownloadImage>();
 builder.Services.AddScoped<IDogImageInfoDb, DogImageInfoDb>();
 
-// Проверка зарегистрированных сервисов в окружении разработки. 
+// РџСЂРѕРІРµСЂРєР° Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅС‹С… СЃРµСЂРІРёСЃРѕРІ РІ РѕРєСЂСѓР¶РµРЅРёРё СЂР°Р·СЂР°Р±РѕС‚РєРё. 
 builder.WebHost.UseDefaultServiceProvider((context, options) =>
 {
     var isDevelopment = context.HostingEnvironment.IsDevelopment();
@@ -25,17 +25,17 @@ builder.WebHost.UseDefaultServiceProvider((context, options) =>
     options.ValidateOnBuild = isDevelopment;
 });
 
-// Добавление Swagger.
+// Р”РѕР±Р°РІР»РµРЅРёРµ Swagger.
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
         Title = "DogInfo WebAPI",
-        Description = "ASP.NET Core Web API для получения породы собак и загрузки изображений"
+        Description = "ASP.NET Core Web API РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РїРѕСЂРѕРґС‹ СЃРѕР±Р°Рє Рё Р·Р°РіСЂСѓР·РєРё РёР·РѕР±СЂР°Р¶РµРЅРёР№"
     });
 
-    // Включение в документацию комментариев из кода.
+    // Р’РєР»СЋС‡РµРЅРёРµ РІ РґРѕРєСѓРјРµРЅС‚Р°С†РёСЋ РєРѕРјРјРµРЅС‚Р°СЂРёРµРІ РёР· РєРѕРґР°.
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
@@ -43,7 +43,7 @@ builder.Services.AddSwaggerGen(options =>
 var app = builder.Build();
 
 
-// Конфигурация Http pipeline.
+// РљРѕРЅС„РёРіСѓСЂР°С†РёСЏ Http pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

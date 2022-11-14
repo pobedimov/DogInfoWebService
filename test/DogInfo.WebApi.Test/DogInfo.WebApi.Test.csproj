@@ -21,4 +21,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\DogInfo.WebApi\DogInfo.WebApi.csproj" />
+  </ItemGroup>
+
 </Project>
