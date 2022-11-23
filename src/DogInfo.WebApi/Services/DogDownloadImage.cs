@@ -68,10 +68,10 @@ public class DogDownloadImage : IDogDownloadImage
             {
                 try
                 {
-                    var jsonDataDeserializeObject = await httpResponse.Content.ReadFromJsonAsync<JsonImages>();
+                    var jsonDataDeserializeObject = await httpResponse.Content.ReadFromJsonAsync<ImagesDto>();
 
                     // Проверка формата JSON файла
-                    if (jsonDataDeserializeObject is JsonImages && jsonDataDeserializeObject.Message is not null)
+                    if (jsonDataDeserializeObject is ImagesDto && jsonDataDeserializeObject.Message is not null)
                     {
                         foreach (var itemImageUri in jsonDataDeserializeObject.Message)
                         {

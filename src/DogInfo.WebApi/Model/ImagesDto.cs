@@ -6,7 +6,7 @@ namespace DogInfoWebService.Model;
 /// Представляет класс, описывающий изображения собак.
 /// </summary>
 [Serializable]
-public class JsonImages
+public class ImagesDto
 {    
     /// <summary>
     /// Содержит URI изображений.

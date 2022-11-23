@@ -7,7 +7,7 @@ namespace DogInfoWebService.Controllers
     /// <summary>
     /// Контроллер сервиса загрузки пород собак и изображений.
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("api/v1.0/[controller]")]
     [ApiController]
     public class DogController : ControllerBase
     {
@@ -33,7 +33,7 @@ namespace DogInfoWebService.Controllers
         /// </summary>
         /// <returns>Список пород собак.</returns>
         ///<response code="200">Список пород собак.</response>
-        [HttpGet("getdogbreed")]
+        [HttpGet("GetDogBreed")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> Index()
         {

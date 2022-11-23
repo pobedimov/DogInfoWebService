@@ -6,7 +6,7 @@ namespace DogInfoWebService.Model;
 /// Представляет сообщение содержащее информацию о породах собак.
 /// </summary>
 [Serializable]
-public class JsonBreeds
+public class BreedsDto
 {
     /// <summary>
     /// Содержит словарь, описывающий породы собак.

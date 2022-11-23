@@ -36,33 +36,31 @@ public class DogBreedsList : IDogBreedsList
         // Выброс исключения, если код не 200-299.
         httpResponse.EnsureSuccessStatusCode();
 
-		if (httpResponse.Content is not null && httpResponse?.Content?.Headers?.ContentType?.MediaType == "application/json")
+		if (httpResponse.Content is null && httpResponse?.Content?.Headers?.ContentType?.MediaType != "application/json")
 		{
-			try
-			{
-				var jsonDataDeserializeObject = await httpResponse.Content.ReadFromJsonAsync<JsonBreeds>();
-
-				// Проверка формата JSON файла
-				if (jsonDataDeserializeObject is JsonBreeds && jsonDataDeserializeObject.Message is not null)
-				{
-					return new List<string>(jsonDataDeserializeObject.Message.Keys);
-				}
-				else
-				{
-					_logger.LogError("Неверный формат JSON данных.");
-					return new List<string>();
-				}
-			}
-			catch(Exception ex) when (ex is NotSupportedException || ex is JsonException)
-            {
-                _logger.LogError("Ошибка дессериализации JSON данных.{error}", ex);
-                throw;
-			}
-		}
-		else 
-		{
-			_logger.LogError("Некорректный формат HTTP ответа, данные не могут быть дессерилазованы.");
+            _logger.LogError("Некорректный формат HTTP ответа, данные не могут быть дессерилазованы.");
             return new List<string>();
         }
+
+		try
+		{
+			var jsonDataDeserializeObject = await httpResponse.Content.ReadFromJsonAsync<BreedsDto>();
+
+			// Проверка формата JSON файла
+			if (jsonDataDeserializeObject is BreedsDto && jsonDataDeserializeObject.Message is not null)
+			{
+				return new List<string>(jsonDataDeserializeObject.Message.Keys);
+			}
+			else
+			{
+				_logger.LogError("Неверный формат JSON данных.");
+				return new List<string>();
+			}
+		}
+		catch(Exception ex) when (ex is NotSupportedException || ex is JsonException)
+        {
+            _logger.LogError("Ошибка дессериализации JSON данных.{error}", ex);
+            throw;
+		}
     }
 }
