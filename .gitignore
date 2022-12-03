@@ -5,6 +5,7 @@
 
 # Doc file
 DogInfo.WebApi.xml
+dump.rdb
 
 # User-specific files
 *.rsuser
