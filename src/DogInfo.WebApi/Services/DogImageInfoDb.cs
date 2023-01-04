@@ -1,7 +1,7 @@
-﻿using DogInfoWebService.Infrastructure;
+﻿using DogInfo.WebApi.Infrastructure;
 using StackExchange.Redis;
 
-namespace DogInfoWebService.Services;
+namespace DogInfo.WebApi.Services;
 
 /// <summary>
 /// Представляет класс для работы с БД изображений.

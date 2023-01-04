@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DogInfo.WebApi", "src\DogInfo.WebApi\DogInfo.WebApi.csproj", "{DA4E70F2-391A-4FB9-9AC1-33CC9F701976}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DogInfo.WebApi.Test", "test\DogInfo.WebApi.Test\DogInfo.WebApi.Test.csproj", "{D897E868-9134-4F1C-A5B9-C390A856631E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DogInfo.WebApi.Tests", "test\DogInfo.WebApi.Tests\DogInfo.WebApi.Tests.csproj", "{D897E868-9134-4F1C-A5B9-C390A856631E}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{6B6C8666-255E-4D3D-BA8E-B3A44B5A871A}"
 EndProject

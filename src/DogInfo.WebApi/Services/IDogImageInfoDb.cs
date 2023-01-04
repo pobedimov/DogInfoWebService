@@ -1,4 +1,4 @@
-﻿namespace DogInfoWebService.Services;
+﻿namespace DogInfo.WebApi.Services;
 
 /// <summary>
 /// Представляет интерфейс для сохранения информации об изображениях.

@@ -1,10 +1,10 @@
-﻿using DogInfoWebService.Model;
-using DogInfoWebService.Settings;
+﻿using System.Text.Json;
+using DogInfo.WebApi.Model;
+using DogInfo.WebApi.Settings;
 using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
-using System.Text.Json;
 
-namespace DogInfoWebService.Services;
+namespace DogInfo.WebApi.Services;
 
 /// <summary>
 /// Представляет класс, реализующий загрузку картинок.

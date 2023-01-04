@@ -1,6 +1,6 @@
 ﻿using StackExchange.Redis;
 
-namespace DogInfoWebService.Infrastructure;
+namespace DogInfo.WebApi.Infrastructure;
 
 /// <summary>
 /// Представляет класс для подключения к БД Redis.

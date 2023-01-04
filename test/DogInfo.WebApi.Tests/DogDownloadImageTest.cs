@@ -1,6 +1,6 @@
-﻿using DogInfoWebService.Services;
+﻿using DogInfo.WebApi.Services;
 
-namespace DogInfo.WebApi.Test;
+namespace DogInfo.WebApi.Tests;
 
 /// <summary>
 /// Класс для тестирования сервиса загрузки изображений.

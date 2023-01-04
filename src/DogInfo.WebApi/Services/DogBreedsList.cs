@@ -1,8 +1,8 @@
-﻿using Microsoft.Net.Http.Headers;
-using System.Text.Json;
-using DogInfoWebService.Model;
+﻿using System.Text.Json;
+using DogInfo.WebApi.Model;
+using Microsoft.Net.Http.Headers;
 
-namespace DogInfoWebService.Services;
+namespace DogInfo.WebApi.Services;
 
 /// <summary>
 /// Представляет клиента для загрузки породы собак.

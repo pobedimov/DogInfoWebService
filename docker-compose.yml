@@ -8,6 +8,8 @@ services:
     build:
       context: .
       dockerfile: src/DogInfo.WebApi/Dockerfile
+    ports:
+      - '80:80'
     networks:
       - doginfowebapi-network
     depends_on:

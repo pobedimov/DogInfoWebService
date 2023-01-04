@@ -1,4 +1,4 @@
-﻿namespace DogInfoWebService.Services;
+﻿namespace DogInfo.WebApi.Services;
 
 /// <summary>
 /// Интерфейс загрузки списка пород собак.

@@ -1,4 +1,4 @@
-﻿namespace DogInfoWebService.Settings;
+﻿namespace DogInfo.WebApi.Settings;
 
 /// <summary>
 /// Представляет класс для хранения настроек об изображениях загруженных из конфигурации.

@@ -1,8 +1,8 @@
-﻿using DogInfoWebService.Services;
-using DogInfoWebService.Model;
+﻿using DogInfo.WebApi.Model;
+using DogInfo.WebApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DogInfoWebService.Controllers
+namespace DogInfo.WebApi.Controllers
 {
     /// <summary>
     /// Контроллер сервиса загрузки пород собак и изображений.

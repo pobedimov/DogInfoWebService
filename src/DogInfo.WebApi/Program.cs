@@ -1,7 +1,7 @@
-﻿using DogInfoWebService.Services;
-using DogInfoWebService.Settings;
-using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Models;
 using System.Reflection;
+using DogInfo.WebApi.Services;
+using DogInfo.WebApi.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 

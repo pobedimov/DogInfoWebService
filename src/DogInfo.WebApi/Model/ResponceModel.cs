@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DogInfoWebService.Model;
+namespace DogInfo.WebApi.Model;
 
 /// <summary>
 /// Представляет класс ответа.
