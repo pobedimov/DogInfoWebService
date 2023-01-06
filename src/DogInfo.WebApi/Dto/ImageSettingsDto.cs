@@ -1,9 +1,9 @@
-﻿namespace DogInfo.WebApi.Settings;
+﻿namespace DogInfo.WebApi.Dto;
 
 /// <summary>
 /// Представляет класс для хранения настроек об изображениях загруженных из конфигурации.
 /// </summary>
-public class AppImageSettings
+public class ImageSettingsDto
 {
     /// <summary>
     /// Представляет путь к директории для сохранения файлов изображений.

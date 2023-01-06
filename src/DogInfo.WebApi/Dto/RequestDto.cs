@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DogInfo.WebApi.Model;
+namespace DogInfo.WebApi.Dto;
 
 /// <summary>
 /// Представляет класс модели запроса.
 /// </summary>
-public class RequestModel
+public class RequestDto
 {
     /// <summary>
     /// Представляет команду.

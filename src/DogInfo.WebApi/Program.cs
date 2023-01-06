@@ -1,12 +1,17 @@
 ﻿using Microsoft.OpenApi.Models;
 using System.Reflection;
+using Serilog;
 using DogInfo.WebApi.Services;
-using DogInfo.WebApi.Settings;
+using DogInfo.WebApi.Dto;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Получаем настройки для секции сохранения картинок.
-builder.Services.Configure<AppImageSettings>(builder.Configuration.GetSection("AppImageSettings"));
+var logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
 
 // Добавление сервисов в контейнер DI.
 builder.Services.AddControllers();
@@ -15,6 +20,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddHttpClient<IDogBreedsList, DogBreedsList>();
 builder.Services.AddHttpClient<IDogDownloadImage, DogDownloadImage>();
 builder.Services.AddScoped<IDogImageInfoDb, DogImageInfoDb>();
+builder.Services.Configure<ImageSettingsDto>(builder.Configuration.GetSection("ImageSettings"));
+
+
 
 // Проверка зарегистрированных сервисов в окружении разработки. 
 builder.WebHost.UseDefaultServiceProvider((context, options) =>
@@ -39,6 +47,7 @@ builder.Services.AddSwaggerGen(options =>
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
+
 
 var app = builder.Build();
 

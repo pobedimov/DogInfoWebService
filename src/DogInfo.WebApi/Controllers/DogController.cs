@@ -1,4 +1,4 @@
-﻿using DogInfo.WebApi.Model;
+﻿using DogInfo.WebApi.Dto;
 using DogInfo.WebApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -55,7 +55,7 @@ namespace DogInfo.WebApi.Controllers
         ///
         /// </remarks>
         [HttpPost("command")]
-        public async Task<ActionResult> DownloadDogsInfoAsync([FromBody] RequestModel model)
+        public async Task<ActionResult> DownloadDogsInfoAsync([FromBody] RequestDto model)
         {
             if (!ModelState.IsValid)
             {
@@ -73,7 +73,7 @@ namespace DogInfo.WebApi.Controllers
                 if (breedsList.Count <= 0)
                 {
                     _logger.LogError("Пустой список пород собак или ошибка загрузки.");
-                    return StatusCode(500, new ResponceModel() { Status = "error" });
+                    return StatusCode(500, new ResponceDto() { Status = "error" });
                 }
 
                 // Сохранение изображений.
@@ -83,19 +83,19 @@ namespace DogInfo.WebApi.Controllers
                 if (dictionaryBreedImages.Count <= 0)
                 {
                     _logger.LogError("Пустой список загруженных изображений. Не были загружены изображения.");
-                    return StatusCode(500, new ResponceModel() { Status = "error" });
+                    return StatusCode(500, new ResponceDto() { Status = "error" });
                 }
 
                 // Сохранение информации об изображениях в БД Redis.
                 _logger.LogInformation("Сохранение информации об изображениях в БД Redis");
                 await _dogImageInfoDb.SaveDogImageInfoDb(dictionaryBreedImages);
 
-                return Ok(new ResponceModel() { Status = "ok" });
+                return Ok(new ResponceDto() { Status = "ok" });
             }
             catch (Exception ex)
             {
                 _logger.LogError("Ошибка при выполнении работы сервиса - {error}", ex);
-                return StatusCode(500, new ResponceModel() { Status = "error" });
+                return StatusCode(500, new ResponceDto() { Status = "error" });
             }
         }
     }

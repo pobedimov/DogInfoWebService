@@ -1,5 +1,5 @@
 ﻿using System.Text.Json;
-using DogInfo.WebApi.Model;
+using DogInfo.WebApi.Dto;
 using Microsoft.Net.Http.Headers;
 
 namespace DogInfo.WebApi.Services;

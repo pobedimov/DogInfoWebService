@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace DogInfo.WebApi.Model;
+namespace DogInfo.WebApi.Dto;
 
 /// <summary>
 /// Представляет класс, описывающий изображения собак.

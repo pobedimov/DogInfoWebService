@@ -1,6 +1,5 @@
 ﻿using System.Text.Json;
-using DogInfo.WebApi.Model;
-using DogInfo.WebApi.Settings;
+using DogInfo.WebApi.Dto;
 using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
 
@@ -21,9 +20,9 @@ public class DogDownloadImage : IDogDownloadImage
     /// <param name="options">Данные настроек для картинок загруженные из конфигурации.</param>
     /// <param name="httpClient">Http клиент.</param>
     /// <param name="logger">Средство логгирования.</param>
-    public DogDownloadImage(IOptions<AppImageSettings> options, HttpClient httpClient, ILogger<DogBreedsList> logger)
+    public DogDownloadImage(IOptions<ImageSettingsDto> options, HttpClient httpClient, ILogger<DogBreedsList> logger)
     {
-        AppImageSettings appImageSettings = options.Value;
+        ImageSettingsDto appImageSettings = options.Value;
         PathToImageFiles = appImageSettings.PathToImageFiles;
 
         _httpClient = httpClient;

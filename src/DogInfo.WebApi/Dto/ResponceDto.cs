@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DogInfo.WebApi.Model;
+namespace DogInfo.WebApi.Dto;
 
 /// <summary>
 /// Представляет класс ответа.
 /// </summary>
-public class ResponceModel
+public class ResponceDto
 {
     /// <summary>
     /// Представляет команду.
